@@ -1,0 +1,62 @@
+package com.example;
+
+import org.apache.kafka.clients.producer.KafkaProducer;
+import org.apache.kafka.clients.producer.ProducerConfig;
+import org.apache.kafka.clients.producer.ProducerRecord;
+import org.apache.kafka.clients.producer.RecordMetadata;
+import org.slf4j.Logger;
+
+import java.util.Properties;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
+
+public class Producer {
+
+    private static Logger logger = org.slf4j.LoggerFactory.getLogger(Producer.class);
+
+    public static void main(String[] args) throws InterruptedException, ExecutionException {
+
+        // Set the properties for the KafkaProducer
+        Properties properties = new Properties();
+        properties.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "4.247.148.242:9092");
+        properties.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringSerializer");
+        properties.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringSerializer");
+
+        // Create a KafkaProducer instance
+        KafkaProducer<String, String> producer = new KafkaProducer<>(properties);
+
+        // Send a message to the topic "topic1"
+        for (int i = 0; i < Integer.MAX_VALUE; i++) {
+            String value = "Hey Kafka!".repeat(100); // 1kb message
+            ProducerRecord<String, String> record = new ProducerRecord<>("topic3", value);
+//            Future<RecordMetadata> recordMetadataFuture= producer.send(record);
+//            RecordMetadata recordMetadata=recordMetadataFuture.get();
+//            logger.info("Received new metadata \nTopic: {}\nKey: {}\nPartition: {}\nOffset: {}\nTimestamp: {}",
+//                    recordMetadata.topic(),
+//                    null,
+//                    recordMetadata.partition(),
+//                    recordMetadata.offset(),
+//                    recordMetadata.timestamp());
+
+            producer.send(record, (recordMetadata, e) -> {
+                if (e == null) {
+                    logger.info("Received new metadata \nTopic: {}\nKey: {}\nPartition: {}\nOffset: {}\nTimestamp: {}",
+                            recordMetadata.topic(),
+                            null,
+                            recordMetadata.partition(),
+                            recordMetadata.offset(),
+                            recordMetadata.timestamp());
+                } else {
+                    logger.error("Error while producing", e);
+                }
+            });
+
+            TimeUnit.MICROSECONDS.sleep(1);
+        }
+
+        // Close the producer
+        producer.close();
+
+    }
+}
