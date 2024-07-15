@@ -31,7 +31,7 @@ az vm show --resource-group myResourceGroup --name myVM --show-details
 
 ```bash
 chmod 400 ~/id_rsa.pem
-ssh -i ~/id_rsa.pem me@52.140.78.183
+ssh -i ~/id_rsa.pem me@4.247.148.242
 ```
 
 # Delete the VM:

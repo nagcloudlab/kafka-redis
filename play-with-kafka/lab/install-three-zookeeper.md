@@ -15,7 +15,7 @@ echo 3 > /tmp/zookeeper3/myid
 ## Edit the zookeeper properties
 
 ```bash
-nano confluent-7.6.1/kafka/etc/zookeeper1.properties
+nano confluent-7.6.1/etc/kafka/zookeeper1.properties
 ```
 
 ```properties
@@ -30,7 +30,7 @@ server.3=localhost:2890:3890
 ```
 
 ```bash
-nano confluent-7.6.1/kafka/etc/zookeeper2.properties
+nano confluent-7.6.1/etc/kafka/zookeeper2.properties
 ```
 
 ```properties
@@ -45,7 +45,7 @@ server.3=localhost:2890:3890
 ```
 
 ```bash
-nano confluent-7.6.1/kafka/etc/zookeeper3.properties
+nano confluent-7.6.1/etc/kafka/zookeeper3.properties
 ```
 
 ```properties
@@ -62,6 +62,8 @@ server.3=localhost:2890:3890
 ## Start the zookeeper nodes
 
 ```bash
+confluent-7.6.1/bin/zookeeper-server-start confluent-7.6.1/etc/kafka/zookeeper.properties
+
 confluent-7.6.1/bin/zookeeper-server-start confluent-7.6.1/etc/kafka/zookeeper1.properties
 confluent-7.6.1/bin/zookeeper-server-start confluent-7.6.1/etc/kafka/zookeeper2.properties
 confluent-7.6.1/bin/zookeeper-server-start confluent-7.6.1/etc/kafka/zookeeper3.properties
