@@ -1,0 +1,11 @@
+notion-pages
+----------------
+
+https://nagcloudlab.notion.site/Kafka-7d32a7c483694bcebb33766c7e5ee9f7?pvs=4
+
+
+slides
+----------------
+
+https://docs.google.com/presentation/d/1tIJKyzOJ-rLYSs_qRiQaSNi8iheKSUF9QHGabbJ0cZs/edit?usp=sharing
+https://docs.google.com/presentation/d/1oZU7PEcszM1C1HmR7u7EI5-DhRiQJNKi/edit?usp=sharing&ouid=116008769779639876320&rtpof=true&sd=true
