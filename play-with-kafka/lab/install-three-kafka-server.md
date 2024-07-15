@@ -1,7 +1,7 @@
 ## 3 kafka server
 
 ```bash
-nano confluent-7.6.1/kafka/etc/server-101.properties
+nano confluent-7.6.1/etc/kafka/server-101.properties
 ```
 
 ```properties
@@ -14,7 +14,7 @@ zookeeper.connect=localhost:2181,localhost:2182,localhost:2183
 ```
 
 ```bash
-nano confluent-7.6.1/kafka/etc/server-102.properties
+nano confluent-7.6.1/etc/kafka/server-102.properties
 ```
 
 ```properties
@@ -27,7 +27,7 @@ zookeeper.connect=localhost:2181,localhost:2182,localhost:2183
 ```
 
 ```bash
-nano confluent-7.6.1/kafka/etc/server-103.properties
+nano confluent-7.6.1/etc/kafka/server-103.properties
 ```
 
 ```properties
