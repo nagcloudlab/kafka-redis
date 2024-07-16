@@ -3,14 +3,12 @@ package com.example;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
-import org.apache.kafka.clients.producer.RecordMetadata;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.slf4j.Logger;
 
 import java.util.List;
 import java.util.Properties;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
 public class Producer {
@@ -24,7 +22,7 @@ public class Producer {
         // Client ID
         props.put(ProducerConfig.CLIENT_ID_CONFIG, "producer-client-1");
         // List of Kafka brokers to connect to
-        props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092,localhost:9093");
+        props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "4.247.148.242:9092,4.247.148.242:9093");
         // Serializer class for key
         props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
         // Serializer class for value
@@ -66,10 +64,10 @@ public class Producer {
         KafkaProducer<String, String> producer = new KafkaProducer<>(props);
 
         // Send a message to the topic "topic1"
-        for (int i = 0; i < 1; i++) {
+        for (int i = 0; i < 100; i++) {
             String value = "Hey Kafka!".repeat(100); // 1kb message
             String key = transactionTypes.get(i % 3);
-            ProducerRecord<String, String> record = new ProducerRecord<>("topic1", 0, key, value);
+            ProducerRecord<String, String> record = new ProducerRecord<>("topic1", value);
             producer.send(record, (recordMetadata, e) -> {
                 if (e == null) {
                     logger.info("Received new metadata \nTopic: {}\nKey: {}\nPartition: {}\nOffset: {}\nTimestamp: {}",
@@ -83,7 +81,7 @@ public class Producer {
                 }
             });
 
-            TimeUnit.MILLISECONDS.sleep(1);
+            TimeUnit.MICROSECONDS.sleep(1);
         }
 
         // Close the producer
