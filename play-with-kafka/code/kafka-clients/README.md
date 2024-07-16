@@ -1,1 +1,1 @@
-mvn compile exec:java -D exec.mainClass="org.example.Producer"
+mvn compile exec:java -D exec.mainClass="com.example.Producer"
