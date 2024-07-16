@@ -16,7 +16,7 @@ public class Consumer {
     public static void main(String[] args) {
 
         Properties props = new Properties();
-        props.put(ConsumerConfig.GROUP_ID_CONFIG, "g2");
+        props.put(ConsumerConfig.GROUP_ID_CONFIG, "g3");
 //        props.put(ConsumerConfig.GROUP_INSTANCE_ID_CONFIG, "instance-1"); // static group instance id
         props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "4.247.148.242:9092");
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer");
@@ -29,6 +29,8 @@ public class Consumer {
         props.put(ConsumerConfig.FETCH_MAX_BYTES_CONFIG, 52428800);
         props.put(ConsumerConfig.MAX_POLL_RECORDS_CONFIG, 500);
         props.put(ConsumerConfig.MAX_PARTITION_FETCH_BYTES_CONFIG, 1048576);
+
+        props.put(ConsumerConfig.CLIENT_RACK_CONFIG, "dc-1");
 
         KafkaConsumer<String, String> consumer = new KafkaConsumer<>(props);
         consumer.subscribe(java.util.Collections.singletonList("topic1"));
@@ -43,15 +45,15 @@ public class Consumer {
 //                logger.info("Polling...");
                 Map<TopicPartition, OffsetAndMetadata> currentProcessedOffsets = new HashMap<>(); // external cache
                 ConsumerRecords<String, String> records = consumer.poll(java.time.Duration.ofMillis(100));
-                logger.info("Polled " + records.count() + " records");
-//                records.forEach(record -> {
-//                    logger.info("Topic " + record.topic());
-//                    logger.info("Record Partition " + record.partition());
-//                    logger.info("Record Offset " + record.offset());
-//                    logger.info("Record Key " + record.key());
-//                    logger.info("Record Value " + record.value());
-//                    currentProcessedOffsets.put(new TopicPartition(record.topic(), record.partition()), new OffsetAndMetadata(record.offset() + 1));
-//                });
+                //logger.info("Polled " + records.count() + " records");
+                records.forEach(record -> {
+                    logger.info("Topic " + record.topic());
+                    logger.info("Record Partition " + record.partition());
+                    logger.info("Record Offset " + record.offset());
+                    logger.info("Record Key " + record.key());
+                    logger.info("Record Value " + record.value());
+                    currentProcessedOffsets.put(new TopicPartition(record.topic(), record.partition()), new OffsetAndMetadata(record.offset() + 1));
+                });
                 consumer.commitSync(currentProcessedOffsets);
 
             }
