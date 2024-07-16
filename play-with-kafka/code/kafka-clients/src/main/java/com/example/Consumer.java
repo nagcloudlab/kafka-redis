@@ -9,9 +9,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
-public class ConsumerApp {
+public class Consumer {
 
-    private static Logger logger = org.slf4j.LoggerFactory.getLogger(ConsumerApp.class);
+    private static Logger logger = org.slf4j.LoggerFactory.getLogger(Consumer.class);
 
     public static void main(String[] args) {
 
