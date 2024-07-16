@@ -59,10 +59,8 @@ public class Producer {
         props.put(ProducerConfig.METADATA_MAX_AGE_CONFIG, 300000);
         // Interceptor classes
         //props.put(ProducerConfig.INTERCEPTOR_CLASSES_CONFIG, ProducerClientInterceptor.class.getName());
-
         // Create a KafkaProducer instance
         KafkaProducer<String, String> producer = new KafkaProducer<>(props);
-
         // Send a message to the topic "topic1"
         for (int i = 0; i < 100; i++) {
             String value = "Hey Kafka!".repeat(100); // 1kb message
@@ -81,7 +79,7 @@ public class Producer {
                 }
             });
 
-            TimeUnit.MICROSECONDS.sleep(1);
+            TimeUnit.MILLISECONDS.sleep(1);
         }
 
         // Close the producer

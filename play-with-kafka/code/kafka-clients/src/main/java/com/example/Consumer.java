@@ -43,15 +43,15 @@ public class Consumer {
 //                logger.info("Polling...");
                 Map<TopicPartition, OffsetAndMetadata> currentProcessedOffsets = new HashMap<>(); // external cache
                 ConsumerRecords<String, String> records = consumer.poll(java.time.Duration.ofMillis(100));
-//                logger.info("Polled " + records.count() + " records");
-                records.forEach(record -> {
-                    logger.info("Topic " + record.topic());
-                    logger.info("Record Partition " + record.partition());
-                    logger.info("Record Offset " + record.offset());
-                    logger.info("Record Key " + record.key());
-                    logger.info("Record Value " + record.value());
-                    currentProcessedOffsets.put(new TopicPartition(record.topic(), record.partition()), new OffsetAndMetadata(record.offset() + 1));
-                });
+                logger.info("Polled " + records.count() + " records");
+//                records.forEach(record -> {
+//                    logger.info("Topic " + record.topic());
+//                    logger.info("Record Partition " + record.partition());
+//                    logger.info("Record Offset " + record.offset());
+//                    logger.info("Record Key " + record.key());
+//                    logger.info("Record Value " + record.value());
+//                    currentProcessedOffsets.put(new TopicPartition(record.topic(), record.partition()), new OffsetAndMetadata(record.offset() + 1));
+//                });
                 consumer.commitSync(currentProcessedOffsets);
 
             }
