@@ -1,0 +1,9 @@
+{
+    "name": "file-sink-connector",
+    "config": {
+        "connector.class": "FileStreamSink",
+        "tasks.max": 1,
+        "file": "/home/nag/kafka-redis/play-with-kafka/lab/kafka-connect/file2.txt",
+        "topics": "topic1"
+    }
+}

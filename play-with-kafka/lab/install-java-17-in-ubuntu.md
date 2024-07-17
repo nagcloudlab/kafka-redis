@@ -1,4 +1,3 @@
-install java-17 on ubuntu 22.04
 
 # Install Java 17 on Ubuntu 22.04
 
