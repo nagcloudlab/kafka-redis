@@ -3,12 +3,9 @@ package com.example;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
-import org.apache.kafka.clients.producer.RecordMetadata;
-import org.apache.kafka.common.Cluster;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.slf4j.Logger;
 
-import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
@@ -77,7 +74,7 @@ public class ProducerClient {
         // Client ID
         props.put(ProducerConfig.CLIENT_ID_CONFIG, "producer-client-1");
         // List of Kafka brokers to connect to
-        props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9094");
+        props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
         // Serializer class for key
         props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
         // Serializer class for value
@@ -116,9 +113,26 @@ public class ProducerClient {
         // props.put(ProducerConfig.INTERCEPTOR_CLASSES_CONFIG,
         // ProducerClientInterceptor.class.getName());
         // Create a KafkaProducer instance
+
+        props.put("security.protocol", "SASL_PLAINTEXT");
+        props.put("sasl.mechanism", "PLAIN");
+        props.put("sasl.jaas.config",
+                "org.apache.kafka.common.security.plain.PlainLoginModule required username='admin' password='admin-secret';");
+
+        // props.put("ssl.truststore.location",
+        //         "/Users/nag/kafka-redis/play-with-kafka/lab/ssl/kafka.broker-1.truststore.jks");
+        // props.put("ssl.truststore.password", "changeme");
+
+        // props.put("ssl.keystore.location",
+        //         "/Users/nag/kafka-redis/play-with-kafka/lab/ssl/kafka.client.keystore.jks");
+        // props.put("ssl.keystore.password", "changeme");
+        // props.put("ssl.key.password", "changeme");
+
+
+
         KafkaProducer<String, String> producer = new KafkaProducer<>(props);
         // Send a message to the topic "topic1"
-        for (int i = 0; i < Integer.MAX_VALUE; i++) {
+        for (int i = 0; i < 1; i++) {
 //            String value = "Hey Kafka!".repeat(100); // 1kb message
             String value = String.valueOf(i);
             ProducerRecord<String, String> record = new ProducerRecord<>("numbers", value);
