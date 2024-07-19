@@ -1,5 +1,3 @@
-
-
 start kafka connect-cluster in distributed mode with 2 worker nodes
 
 ```bash
@@ -10,8 +8,7 @@ confluent-7.6.1/bin/connect-distributed confluent-7.6.1/etc/kafka/connect-distri
 confluent-7.6.1/bin/connect-distributed confluent-7.6.1/etc/kafka/connect-distributed-worker-2.properties
 ```
 
--------------------------------------------------------------------------------------------------
-
+---
 
 get available/installed connector-plugins
 
@@ -25,13 +22,12 @@ get deployed connectors
 curl http://localhost:8083/connectors | jq
 ```
 
--------------------------------------------------------------------------------------------------
-
+---
 
 deploy file-source connector
 
 ```bash
-curl -X POST -H "Content-Type: application/json" -d @connnectors/file-source-connector.json http://localhost:8083/connectors | jq
+curl -X POST -H "Content-Type: application/json" -d @/Users/nag/kafka-redis/play-with-kafka/lab/kafka-connect/connnectors/file-source-connector.json http://localhost:8083/connectors | jq
 ```
 
 list deployed connectors
@@ -46,7 +42,6 @@ get connector status
 curl http://localhost:8083/connectors/file-source-connector/status | jq
 ```
 
-
 get connector config
 
 ```bash
@@ -58,7 +53,6 @@ get connector tasks
 ```bash
 curl http://localhost:8083/connectors/file-source-connector/tasks | jq
 ```
-
 
 get connector task status
 
@@ -90,12 +84,12 @@ delete connector
 curl -X DELETE http://localhost:8083/connectors/file-source-connector | jq
 ```
 
--------------------------------------------------------------------------------------------------
+---
 
 deploy file-sink connector
 
 ```bash
-curl -X POST -H "Content-Type: application/json" -d @connnectors/file-sink-connector.json http://localhost:8083/connectors | jq
+curl -X POST -H "Content-Type: application/json" -d @/Users/nag/kafka-redis/play-with-kafka/lab/kafka-connect/connnectors/file-sink-connector.json http://localhost:8083/connectors | jq
 ```
 
 list deployed connectors
@@ -103,4 +97,5 @@ list deployed connectors
 ```bash
 curl http://localhost:8083/connectors | jq
 ```
--------------------------------------------------------------------------------------------------
+
+---

@@ -1,9 +1,9 @@
 {
-    "name": "file-source-connector",
-    "config": {
-        "connector.class": "FileStreamSource",
-        "tasks.max": 1,
-        "file": "/home/nag/kafka-redis/play-with-kafka/lab/kafka-connect/file1.txt",
-        "topic": "topic1"
-    }
+  "name": "file-source-connector",
+  "config": {
+    "connector.class": "FileStreamSource",
+    "tasks.max": 1,
+    "file": "/Users/nag/kafka-redis/play-with-kafka/lab/kafka-connect/file1.txt",
+    "topic": "topic1"
+  }
 }

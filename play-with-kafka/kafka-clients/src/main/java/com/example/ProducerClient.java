@@ -77,7 +77,7 @@ public class ProducerClient {
         // Client ID
         props.put(ProducerConfig.CLIENT_ID_CONFIG, "producer-client-1");
         // List of Kafka brokers to connect to
-        props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
+        props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9094");
         // Serializer class for key
         props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
         // Serializer class for value

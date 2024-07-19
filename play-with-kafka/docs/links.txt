@@ -3,6 +3,7 @@ notion-pages
 
 https://nagcloudlab.notion.site/Kafka-7d32a7c483694bcebb33766c7e5ee9f7?pvs=4
 
+https://nagcloudlab.notion.site/Kraft-ce9d7acf7c96423a8f3655f37f771f5c?pvs=4
 
 slides
 ----------------
