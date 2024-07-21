@@ -113,11 +113,11 @@ public class ProducerClient {
         // props.put(ProducerConfig.INTERCEPTOR_CLASSES_CONFIG,
         // ProducerClientInterceptor.class.getName());
         // Create a KafkaProducer instance
-
-        props.put("security.protocol", "SASL_PLAINTEXT");
-        props.put("sasl.mechanism", "PLAIN");
-        props.put("sasl.jaas.config",
-                "org.apache.kafka.common.security.plain.PlainLoginModule required username='admin' password='admin-secret';");
+//
+//        props.put("security.protocol", "SASL_PLAINTEXT");
+//        props.put("sasl.mechanism", "PLAIN");
+//        props.put("sasl.jaas.config",
+//                "org.apache.kafka.common.security.plain.PlainLoginModule required username='admin' password='admin-secret';");
 
         // props.put("ssl.truststore.location",
         //         "/Users/nag/kafka-redis/play-with-kafka/lab/ssl/kafka.broker-1.truststore.jks");
@@ -132,10 +132,10 @@ public class ProducerClient {
 
         KafkaProducer<String, String> producer = new KafkaProducer<>(props);
         // Send a message to the topic "topic1"
-        for (int i = 0; i < 1; i++) {
-//            String value = "Hey Kafka!".repeat(100); // 1kb message
-            String value = String.valueOf(i);
-            ProducerRecord<String, String> record = new ProducerRecord<>("numbers", value);
+        for (int i = 0; i < Integer.MAX_VALUE; i++) {
+            String value = "Hey Kafka!".repeat(100); // 1kb message
+//            String value = String.valueOf(i);
+            ProducerRecord<String, String> record = new ProducerRecord<>("topic1", value);
             producer.send(record, (recordMetadata, e) -> {
                 if (e == null) {
                     logger.info("Received new metadata \nTopic: {}\nKey: {}\nPartition: {}\nOffset: {}\nTimestamp: {}",
