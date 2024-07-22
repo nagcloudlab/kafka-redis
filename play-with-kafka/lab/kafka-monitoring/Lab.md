@@ -142,10 +142,10 @@ datasources:
 
 ```sh
 sudo mkdir -p /etc/grafana/provisioning/dashboards
-sudo nano /etc/grafana/provisioning/datasources/datasource.yml
+sudo nano /etc/grafana/provisioning/dashboards/kafka.yml
 ```
 
-datasource.yml
+kafka.yml
 
 ```yml
 apiVersion: 1
