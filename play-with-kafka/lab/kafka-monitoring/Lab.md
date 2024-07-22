@@ -163,5 +163,4 @@ providers:
 ```
 
 place sample dashboards ( dashboards directory) in /var/lib/grafana/dashboards directory
-
 restart grafana server
