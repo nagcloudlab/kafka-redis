@@ -1,4 +1,3 @@
-
 Configuration: 16GB RAM, 4 vCPUs, 30GB disk space, and a public IP address.
 
 ## Create a new resource group in the Central India region:
@@ -30,7 +29,7 @@ az vm show --resource-group myResourceGroup --name myVM --show-details
 
 ```bash
 chmod 400 ~/id_rsa.pem
-ssh -i ~/id_rsa.pem me@<public-ip>
+ssh -i ~/id_rsa.pem me@4.240.43.251
 ```
 
 # Delete the VM:

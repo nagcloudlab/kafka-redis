@@ -1,2 +1,0 @@
-[2024-07-21 09:00:00,007] INFO [Broker id=102] Finished LeaderAndIsr request in 46ms correlationId 4 from controller 101 for 6 partitions (state.change.logger)
-[2024-07-21 09:00:00,010] INFO [Broker id=102] Add 6 partitions and deleted 0 partitions from metadata cache in response to UpdateMetadata request sent by controller 101 epoch 1 with correlation id 5 (state.change.logger)
