@@ -5,8 +5,9 @@ from rediscluster import RedisCluster
 # Determine startup nodes based on command-line arguments
 if len(sys.argv) != 3:
     startup_nodes = [
-        {"host": "127.0.0.1", "port": 7000},
-        {"host": "127.0.0.1", "port": 7001}
+        {"host": "127.0.0.1", "port": 8000},
+        {"host": "127.0.0.1", "port": 8001},
+        {"host": "127.0.0.1", "port": 8002},
     ]
 else:
     startup_nodes = [
