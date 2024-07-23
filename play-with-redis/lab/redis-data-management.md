@@ -1,9 +1,8 @@
+---
 
---------------------------------------------------------------------------------
-Redis Data Management
---------------------------------------------------------------------------------
+## Redis Data Management
 
-- Keys in Redis are binary-safe strings, meaning they can contain any type of data including spaces, symbols, or even binary data. 
+- Keys in Redis are binary-safe strings, meaning they can contain any type of data including spaces, symbols, or even binary data.
 
 - Values can be different data types like strings, hashes, lists, sets, sorted sets, bitmaps, hyperloglogs, and streams.
 
@@ -32,25 +31,24 @@ Command to remove the expiration from a key:
 PERSIST mykey
 
 Key Spaces
-Redis keyspace is the collection of all keys stored in a Redis database. 
-You can switch between different key spaces (databases) using the SELECT command. 
+Redis keyspace is the collection of all keys stored in a Redis database.
+You can switch between different key spaces (databases) using the SELECT command.
 By default, Redis has 16 databases (numbered 0-15).
 
 Command to switch to a different database:
 SELECT 1
 
-
 Key Naming
 
 Keys in Redis are binary-safe strings, meaning they can contain any type of data including spaces, symbols, or even binary data.
 
-Keep it simple but robust: 
+Keep it simple but robust:
 -> Use a consistent naming convention to make it easier to manage and query keys.
 
-Avoid very short keys: 
+Avoid very short keys:
 -> While shorter keys save memory, they can be ambiguous and less informative.
 
-Use a schema based on your database design: 
+Use a schema based on your database design:
 -> Define keys in a way that reflects your application's data structure.
 
 SET employe:101:name "John"
@@ -59,10 +57,10 @@ SET employe:102:name "Alice"
 SET employe:102:salary "6000"
 
 Command to find keys that match a pattern:
-KEYS employe:*
+KEYS employe:\* ( not recommened, blocking command)
 
 Use SCAN for better performance in production environments:
-SCAN 0 MATCH employe:* COUNT 10
+SCAN 0 MATCH employe:\* COUNT 10
 
 Command to get information about the keys in the current database:
 INFO keyspace
@@ -79,10 +77,9 @@ UNLINK mykey
 Command to get the data type of a key:
 TYPE mykey
 
+---
 
---------------------------------------------------------------------------------
-Redis data structures
---------------------------------------------------------------------------------
+## Redis data structures
 
 1. Strings
 2. Hashes
@@ -94,9 +91,11 @@ Redis data structures
 8. Streams
 9. Geospatial Indexes
 
---------------------------------------------------------------------------------
+---
+
 1. Strings
---------------------------------------------------------------------------------
+
+---
 
 ### 1. Setting Strings
 
@@ -431,4 +430,3 @@ Example:
 MSETNX key1 "Hello" key2 "World"
 
 ```
-
